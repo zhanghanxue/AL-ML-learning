@@ -1,81 +1,53 @@
-# 🚀 AI Learning Journey – Zhang Han Xue
+# AI/ML Learning Journey: Project Portfolio
 
-Welcome to my personal AI/ML learning journey repository. This repo documents my 3-month plan, projects, and progress as I transition into the AI/ML engineering field.
+A public log of projects completed as part of a structured learning plan to transition into AI/ML Engineering. This repository demonstrates a practical, project-based approach to building skills in machine learning and deep learning, utilizing a fully cloud-native workflow.
 
-## 📅 3-Month Learning & Project Plan
+## 📅 Learning Plan & Progress
 
-### ✅ Month 1 – Python & AI Foundations
-**Goal:** Refresh Python basics and get an overview of AI fundamentals.
+A high-level overview of the learning trajectory and its practical outputs.
 
-- [ ] Complete LearnPython.org tutorials
-- [ ] Complete Mimo Python basics
-- [ ] Finish Elements of AI (Part 1)
-- [ ] Practice Python on Exercism
-- [ ] Build Number Guessing Game
-- [ ] Perform EDA on a dataset in Colab
+### 🧠 Phase 1: Foundations
+**Focus:** Reactivating Python proficiency and mastering the data science stack (Pandas, NumPy, Seaborn) for data manipulation and analysis.
+- **Status:** `IN PROGRESS`
+- **Key Outcomes:** Proficiency in data cleaning, exploratory data analysis (EDA), and building classical ML models with Scikit-learn.
 
-### ✅ Month 2 – Core Machine Learning
-**Goal:** Learn essential ML models and practice implementing them.
+### 🤖 Phase 2: Core Machine Learning
+**Focus:** Understanding fundamental algorithms, model evaluation, and the end-to-end ML pipeline.
+- **Status:** `UP NEXT`
+- **Key Outcomes:** Ability to implement, train, and evaluate models for classification and regression tasks.
 
-- [ ] Finish Google ML Crash Course
-- [ ] Complete freeCodeCamp AI/ML curriculum
-- [ ] Read core chapters of Dive into Deep Learning
-- [ ] Experiment with logistic regression and decision trees (scikit-learn)
-- [ ] Build Spam Classifier (Naive Bayes)
-- [ ] Build House Price Predictor (linear regression on Kaggle dataset)
+### 🧠 Phase 3: Deep Learning & NLP
+**Focus:** Building and fine-tuning neural networks using PyTorch and the Hugging Face ecosystem for Natural Language Processing.
+- **Status:** `NOT STARTED`
+- **Key Outcomes:** Experience in transfer learning, using transformer models, and working with modern NLP frameworks.
 
-### ✅ Month 3 – Deep Learning & Applied AI
-**Goal:** Build and refine real AI projects to showcase in portfolio.
+### 🚀 Phase 4: MLOps & Production
+**Focus:** Transitioning from notebooks to production by building scalable APIs and deploying models using cloud services.
+- **Status:** `NOT STARTED`
+- **Key Outcomes:** Skills in model deployment, containerization, and creating reproducible ML pipelines.
 
-- [ ] Complete fast.ai Practical Deep Learning for Coders
-- [ ] Finish Elements of AI (advanced modules)
-- [ ] Run TensorFlow & PyTorch examples in Colab
-- [ ] Fine-tune a Hugging Face model
-- [ ] Build Image Classifier (CNN on MNIST/CIFAR-10)
-- [ ] Build Chatbot (Hugging Face Transformers)
-- [ ] Build Sentiment Analyzer (text classification)
+---
 
-## 🛠️ Projects
+## 📂 Project Portfolio
 
-Each project will live in its own folder with code + a short writeup.
+| Project | Description | Tech Stack | Status |
+| :--- | :--- | :--- | :--- |
 
-### 01 – Number Guessing Game
-📌 **Status:** Pending  
-📝 **Description:** Simple Python CLI project to refresh basics.
+---
 
-### 02 – EDA on Movie Dataset
-📌 **Status:** Pending  
-📝 **Description:** Exploratory analysis of a Kaggle dataset with pandas and matplotlib.
+## 🛠️ Cloud-Native Tech Stack
 
-### 03 – Spam Classifier
-📌 **Status:** Pending  
-📝 **Description:** Text classification with scikit-learn Naive Bayes.
+This learning journey utilizes a 100% cloud-based development environment.
+- **Development:** `GitHub Codespaces`, `Google Colab`
+- **Training & Experimentation:** `Google Colab (GPU)`, `Azure ML Studio`
+- **Deployment & Demos:** `Hugging Face Spaces`, `Azure Container Apps`
+- **Version Control & CI/CD:** `GitHub Actions`
 
-### 04 – House Price Predictor
-📌 **Status:** Pending  
-📝 **Description:** Linear regression on structured dataset.
+---
 
-### 05 – Image Classifier
-📌 **Status:** Pending  
-📝 **Description:** CNN model on MNIST or CIFAR-10.
+## 🔗 Links
+- **Live Demos:** 
+- **LinkedIn:** 
 
-### 06 – Chatbot
-📌 **Status:** Pending  
-📝 **Description:** Simple Q&A chatbot using Hugging Face.
-
-### 07 – Sentiment Analyzer
-📌 **Status:** Pending  
-📝 **Description:** Classify positive/negative reviews with NLP.
-
-## 📈 Progress Log
-
-*(Update weekly with quick notes)*
-
-- **Week 1:** Started Python refresh (LearnPython.org)
-- **Week 2:** …
-
-## 🎯 Future Goals
-
-- [ ] Publish portfolio projects on GitHub with READMEs
-- [ ] Share blog posts on LinkedIn/Medium about learnings
-- [ ] Earn Microsoft Azure AI Engineer Associate certification
+---
+*This repository serves as a living portfolio. The code and projects herein demonstrate a commitment to practical learning and building production-ready skills.*
