@@ -52,15 +52,15 @@ A living log of my weekly progress and key learnings.
 
 # Progress Log
 
-## Pre-Week 1: Environment Setup
+## Environment Setup
 - [x] GitHub Codespaces configured with 2-core machine
-- [] Colab GPU access verified and tested
-- [] Basic requirements.txt created and packages installed
+- [ ] Colab GPU access verified and tested
+- [ ] Basic requirements.txt created and packages installed
 
 ## Week 1 (Sep 8-14): Python Reactivation
-- [] Completed 10+ Exercism Python problems
-- [] Refreshed Python knowledge (Lists, Dictionaries, Functions, etc.)
-- [] Mastered list comprehensions and *args/**kwargs
+- [ ] Completed 10+ Exercism Python problems
+- [ ] Refreshed Python knowledge (Lists, Dictionaries, Functions, etc.)
+- [ ] Mastered list comprehensions and *args/**kwargs
 - [x] Set up Black and Flake8 for code formatting
 
 ## Week 2 (Sep 15-21): Data Manipulation
