@@ -50,9 +50,67 @@ This end-to-end system is the central artifact of my learning journey, designed 
 
 A living log of my weekly progress and key learnings.
 
-- **Week 1 (MM/DD):** Environment setup complete. Python refresh underway. Completed first 5 Exercism problems.
-- **Week 2 (MM/DD):** Data manipulation with Pandas mastered. Built data ingestion script from a public API.
-- **Week 3 (MM/DD):** Completed full EDA on the Titanic dataset with detailed visualizations and analysis.
+# Progress Log
+
+## Pre-Week 1: Environment Setup
+- [x] GitHub Codespaces configured with 2-core machine
+- [] Colab GPU access verified and tested
+- [] Basic requirements.txt created and packages installed
+
+## Week 1 (Sep 8-14): Python Reactivation
+- [] Completed 10+ Exercism Python problems
+- [] Refreshed Python knowledge (Lists, Dictionaries, Functions, etc.)
+- [] Mastered list comprehensions and *args/**kwargs
+- [x] Set up Black and Flake8 for code formatting
+
+## Week 2 (Sep 15-21): Data Manipulation
+- [ ] Built API data ingestion script with JSONPlaceholder
+- [ ] Mastered Pandas grouping and aggregation operations
+
+## Week 3 (Sep 22-28): EDA & Visualization
+- [ ] Completed Titanic dataset exploratory analysis
+- [ ] Created 3+ detailed visualizations with insights
+
+## Week 4 (Sep 29-Oct 5): ML Fundamentals
+- [ ] Implemented Logistic Regression on Iris dataset
+- [ ] Understood and explained gradient descent concepts
+
+## Week 5 (Oct 6-12): Deep Learning Intro
+- [ ] Built Fast.ai image classifier
+- [ ] Learned CNN architecture fundamentals
+
+## Week 6 (Oct 13-19): PyTorch Mastery
+- [ ] Created custom PyTorch training loop
+- [ ] Mastered backpropagation concepts
+
+## Week 7 (Oct 20-26): NLP & Transformers
+- [ ] Implemented Hugging Face text classification pipeline
+- [ ] Learned transformer architecture components
+
+## Week 8 (Oct 27-Nov 2): Capstone Classifier
+- [ ] Fine-tuned DistilBERT on support ticket data
+- [ ] Achieved F1 score > 0.85 on classification task
+
+## Week 9 (Nov 3-9): API Development
+- [ ] Created FastAPI prediction endpoint
+- [ ] Implemented Docker containerization
+
+## Week 10 (Nov 10-16): CI/CD Pipeline
+- [ ] Built GitHub Actions CI pipeline
+- [ ] Configured automated testing workflow
+
+## Week 11 (Nov 17-23): Deployment
+- [ ] Deployed to Hugging Face Spaces
+- [ ] Verified health endpoints and functionality
+
+## Week 12 (Nov 24-30): Agent Integration
+- [ ] Built LangChain agent with business logic
+- [ ] Implemented Slack notification simulation
+
+## Week 13 (Dec 1-7): Documentation
+- [ ] Created professional README with templates
+- [ ] Designed system architecture diagrams
+
 
 ## 🔗 Links
 
