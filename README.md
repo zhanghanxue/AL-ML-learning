@@ -55,7 +55,7 @@ A living log of my weekly progress and key learnings.
 ## Environment Setup
 - [x] GitHub Codespaces configured with 2-core machine
 - [ ] Colab GPU access verified and tested
-- [ ] Basic requirements.txt created and packages installed
+- [x] Basic requirements.txt created and packages installed
 
 ## Week 1 (Sep 8-14): Python Reactivation
 - [ ] Completed 10+ Exercism Python problems
