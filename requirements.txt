@@ -55,6 +55,7 @@ jupyterlab==4.4.4
 jupyterlab_git==0.51.2
 jupyterlab_pygments==0.3.0
 jupyterlab_server==2.27.3
+kaggle==1.7.4.5
 kiwisolver==1.4.8
 MarkupSafe==3.0.2
 matplotlib==3.10.3

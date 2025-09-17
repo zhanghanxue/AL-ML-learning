@@ -64,6 +64,7 @@ A living log of my weekly progress and key learnings.
 - [x] Set up Black and Flake8 for code formatting
 
 ## Week 2 (Sep 15-21): Data Manipulation
+- [x] Learn Pandas using Kaggle Dataset
 - [ ] Built API data ingestion script with JSONPlaceholder
 - [ ] Mastered Pandas grouping and aggregation operations
 
