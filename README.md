@@ -15,7 +15,7 @@ A high-level overview of my hands-on learning path. Each phase builds towards a 
 ### **Phase 1: Foundations & Data Mastery**
 - **Focus:** Mastering the data science stack (Pandas, NumPy, Seaborn) and core ML concepts through practical application.
 - **Key Outcomes:** Proficiency in data cleaning, exploratory analysis, and building classical ML models.
-- **Project:** [`Exploratory Data Analysis`]() | [`API Data Ingestion`]()
+- **Project:** [`Exploratory Data Analysis`](/week%203%20data%20visualization/) | [`API Data Ingestion`](/week%202%20data%20manipulation/)
 
 ### **Phase 2: Deep Learning & NLP**
 - **Focus:** Building and training neural networks with PyTorch and fine-tuning transformer models with Hugging Face.
@@ -63,14 +63,17 @@ A living log of my weekly progress and key learnings.
 - [x] Mastered list comprehensions and *args/**kwargs
 - [x] Set up Black and Flake8 for code formatting
 
-## Week 2 (Sep 15-21): Data Manipulation
-- [x] Learn Pandas using Kaggle Dataset
-- [ ] Built API data ingestion script with JSONPlaceholder
-- [ ] Mastered Pandas grouping and aggregation operations
+## Week 2 (Sep 15–21): Data Manipulation & Ingestion
+- [x] Practiced Pandas basics on Titanic dataset (loading, cleaning, transformations)  
+- [x] Created derived features (`FamilySize`, `AgeGroup`)  
+- [x] Built API ingestion script with JSONPlaceholder and saved to DataFrame/CSV  
+- [x] Applied `.groupby()`, `.agg()`, `.apply()` on Titanic & API datasets  
 
-## Week 3 (Sep 22-28): EDA & Visualization
-- [ ] Completed Titanic dataset exploratory analysis
-- [ ] Created 3+ detailed visualizations with insights
+## Week 3 (Sep 22–28): Visualization & EDA
+- [x] Polished Titanic EDA notebook (cleaning + insights)  
+- [x] Created 3–5 visualizations (histogram, barplot, boxplot, heatmap) with detailed explanations  
+- [x] Performed EDA on a second dataset (e.g., Iris) 
+- [ ] Practiced NumPy operations (arrays, reshaping, broadcasting)   
 
 ## Week 4 (Sep 29-Oct 5): ML Fundamentals
 - [ ] Implemented Logistic Regression on Iris dataset
