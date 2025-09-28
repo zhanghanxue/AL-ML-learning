@@ -73,7 +73,7 @@ A living log of my weekly progress and key learnings.
 - [x] Polished Titanic EDA notebook (cleaning + insights)  
 - [x] Created 3–5 visualizations (histogram, barplot, boxplot, heatmap) with detailed explanations  
 - [x] Performed EDA on a second dataset (e.g., Iris) 
-- [ ] Practiced NumPy operations (arrays, reshaping, broadcasting)   
+- [x] Practiced NumPy operations (arrays, reshaping, broadcasting)   
 
 ## Week 4 (Sep 29-Oct 5): ML Fundamentals
 - [ ] Implemented Logistic Regression on Iris dataset
