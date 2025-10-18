@@ -76,16 +76,16 @@ A living log of my weekly progress and key learnings.
 - [x] Practiced NumPy operations (arrays, reshaping, broadcasting)   
 
 ## Week 4 (Sep 29-Oct 5): ML Fundamentals
-- [ ] Implemented Logistic Regression on Iris dataset
-- [ ] Understood and explained gradient descent concepts
+- [x] Implemented Logistic Regression on Iris dataset
+- [x] Understood and explained gradient descent concepts
 
 ## Week 5 (Oct 6-12): Deep Learning Intro
-- [ ] Built Fast.ai image classifier
-- [ ] Learned CNN architecture fundamentals
+- [x] Built Fast.ai image classifier
+- [x] Learned CNN architecture fundamentals
 
 ## Week 6 (Oct 13-19): PyTorch Mastery
-- [ ] Created custom PyTorch training loop
-- [ ] Mastered backpropagation concepts
+- [x] Created custom PyTorch training loop
+- [x] Mastered backpropagation concepts
 
 ## Week 7 (Oct 20-26): NLP & Transformers
 - [ ] Implemented Hugging Face text classification pipeline
