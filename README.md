@@ -88,12 +88,12 @@ A living log of my weekly progress and key learnings.
 - [x] Mastered backpropagation concepts
 
 ## Week 7 (Oct 20-26): NLP & Transformers
-- [ ] Implemented Hugging Face text classification pipeline
-- [ ] Learned transformer architecture components
+- [x] Implemented Hugging Face text classification pipeline
+- [x] Learned transformer architecture components
 
 ## Week 8 (Oct 27-Nov 2): Capstone Classifier
-- [ ] Fine-tuned DistilBERT on support ticket data
-- [ ] Achieved F1 score > 0.85 on classification task
+- [x] Fine-tuned DistilBERT on support ticket data
+- [x] Achieved F1 score > 0.85 on classification task
 
 ## Week 9 (Nov 3-9): API Development
 - [ ] Created FastAPI prediction endpoint
