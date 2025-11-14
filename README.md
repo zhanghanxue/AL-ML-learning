@@ -96,8 +96,8 @@ A living log of my weekly progress and key learnings.
 - [x] Achieved F1 score > 0.85 on classification task
 
 ## Week 9 (Nov 3-9): API Development
-- [ ] Created FastAPI prediction endpoint
-- [ ] Implemented Docker containerization
+- [x] Created FastAPI prediction endpoint
+- [x] Implemented Docker containerization
 
 ## Week 10 (Nov 10-16): CI/CD Pipeline
 - [ ] Built GitHub Actions CI pipeline
