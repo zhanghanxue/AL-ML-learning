@@ -1,0 +1,12 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test-setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Setup
+        run: echo "Workflow file is working!"
