@@ -29,7 +29,9 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t my-fastapi-app:${{ github.sha }} .
+          docker build \
+            --build-arg HF_TOKEN=${{ secrets.HF_TOKEN }} \
+            -t my-fastapi-app:${{ github.sha }} .
           docker image
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
