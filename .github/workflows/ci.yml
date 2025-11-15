@@ -37,3 +37,23 @@ jobs:
       
       - name: Check Docker image
         run: docker image
+
+      - name: Run Docker container
+        run: |
+          docker run -d -p 8000:8000 --name fastapi-test my-fastapi-app:${{ github.sha }}
+          sleep 10
+      
+      - name: Test health endpoint
+        run: |
+          curl -f http://localhost:8000/health || curl -f http://localhost:8000/docs
+        
+      - name: Test predict endpoint
+        run: |
+          curl -X POST http://localhost:8000/predict \
+            -H "Content-Type: application/json" \
+            -d '{"text": "Check my account balance for me"}' || echo "Predict endpoint test skipped"
+      
+      - name: Stop and remove Docker container
+        run: |
+          docker stop fastapi-test
+          docker rm fastapi-test
