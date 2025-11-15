@@ -8,19 +8,22 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 app = FastAPI()
 
+
 @app.get("/")
 async def home():
     return {"message": "Banking77 Intent Classifier API"}
+
 
 @app.get("/health")
 async def health_check():
     return {"status": "healthy"}
 
+
 @app.post("/predict", response_model=PredictionResponse)
 def predict(request: PredictionRequest):
     if not request.text.strip():
         raise HTTPException(status_code=400, detail="Text cannot be empty")
-    
+
     try:
         logger.info(f"Received prediction request: {request.text}")
         intent, confidence = predict_intent(request.text)
@@ -33,6 +36,7 @@ def predict(request: PredictionRequest):
         logger.error(f"Full traceback: {error_traceback}")
         raise HTTPException(status_code=500, detail=f"Prediction failed: {str(e)}")
 
+
 @app.get("/debug-test")
 def debug_test():
     """Test the prediction function directly"""
@@ -42,12 +46,12 @@ def debug_test():
         return {
             "status": "success",
             "test_text": test_text,
-            "result": {"prediction": intent, "confidence": confidence}
+            "result": {"prediction": intent, "confidence": confidence},
         }
     except Exception as e:
         return {
             "status": "error",
             "test_text": test_text,
             "error": str(e),
-            "traceback": traceback.format_exc()
+            "traceback": traceback.format_exc(),
         }
