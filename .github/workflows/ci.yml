@@ -31,11 +31,38 @@ jobs:
         run: |
           docker build -t my-fastapi-app:${{ github.sha }} .
           docker image
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
 
       - name: Run Docker container
         run: |
           docker run -d -p 8000:8000 --name fastapi-test my-fastapi-app:${{ github.sha }}
-          sleep 10
+      
+      - name: Wait for the container to be ready
+        run: |
+          echo "Waiting for the FastAPI app to start..."
+          timeout=30
+          count=0
+          while [ $count -lt $timeout ]; do
+            if curl -s -f http://localhost:8000/health > /dev/null; then
+              echo "FastAPI App is healthy!"
+              break
+            elif curl -s -f http://localhost:8000/docs > /dev/null; then
+              echo "FastAPI App docs are accessible!"
+              break
+            else
+              echo "Waiting for app to start ... ($((count + 2))s)"
+              sleep 2
+              count=$((count + 2))
+            fi
+          done
+
+          if [ $count -ge $timeout ]; then
+            echo "FastAPI app did not start within $timeout seconds."
+            echo "Debug info:"
+            docker logs fastapi-test
+            exit 1
+          fi
       
       - name: Test health endpoint
         run: |

@@ -100,8 +100,8 @@ A living log of my weekly progress and key learnings.
 - [x] Implemented Docker containerization
 
 ## Week 10 (Nov 10-16): CI/CD Pipeline
-- [ ] Built GitHub Actions CI pipeline
-- [ ] Configured automated testing workflow
+- [x] Built GitHub Actions CI pipeline
+- [x] Configured automated testing workflow
 
 ## Week 11 (Nov 17-23): Deployment
 - [ ] Deployed to Hugging Face Spaces
