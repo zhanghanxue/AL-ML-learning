@@ -28,15 +28,9 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Build Docker image
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          tags: my-fastapi-app:${{ github.sha }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-      
-      - name: Check Docker image
-        run: docker image
+        run: |
+          docker build -t my-fastapi-app:${{ github.sha }} .
+          docker image
 
       - name: Run Docker container
         run: |
