@@ -7,7 +7,7 @@ import os
 def get_base_url():
     """Get the correct base URL for API calls"""
     # In Hugging Face Space, use relative URL since it's the same container
-    if os.getenv("SPACE_ID"):  # Hugging Face sets this environment variable
+    if os.getenv("SPACE_ID") or os.getenv('HF_SPACE_ID'):  # Hugging Face sets this environment variable
         return ""  # Relative URL works in same container
     else:
         return "http://localhost:8000"  # For local development
@@ -17,8 +17,9 @@ def classify_ticket(ticket_text):
     """Send ticket text to the API and get classification."""
     try:
         base_url = get_base_url()
+        full_url = f"{base_url}/predict"
         response = requests.post(
-            f"{base_url}/predict",
+            full_url,
             json={"text": ticket_text},
             timeout=30,
             verify=False,  # Disable SSL verification for local testing
