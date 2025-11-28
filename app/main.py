@@ -31,7 +31,11 @@ def predict(request: PredictionRequest):
         logger.info(f"Received prediction request: {request.text}")
         intent, confidence = predict_intent(request.text)
         logger.info(f"Prediction successful: {intent} with confidence {confidence}")
-        return {"prediction": intent, "confidence": confidence, "input_text": request.text}
+        return {
+            "prediction": intent,
+            "confidence": confidence,
+            "input_text": request.text,
+        }
     except Exception as e:
         # Get the full traceback
         error_traceback = traceback.format_exc()
@@ -49,7 +53,11 @@ def debug_test():
         return {
             "status": "success",
             "test_text": test_text,
-            "result": {"prediction": intent, "confidence": confidence, "input_text": text},
+            "result": {
+                "prediction": intent,
+                "confidence": confidence,
+                "input_text": text,
+            },
         }
     except Exception as e:
         return {
@@ -58,6 +66,7 @@ def debug_test():
             "error": str(e),
             "traceback": traceback.format_exc(),
         }
+
 
 gradio_app = create_interface()
 app = gr.mount_gradio_app(app, gradio_app, path="/gradio")

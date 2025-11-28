@@ -126,8 +126,8 @@ class Trainer:
             self.best_acc = 0.0
 
         print(
-            f"Training for {epochs} epochs on {self.device} " +
-            f"(epochs {self.start_epoch} to {self.start_epoch + epochs - 1})"
+            f"Training for {epochs} epochs on {self.device} "
+            + f"(epochs {self.start_epoch} to {self.start_epoch + epochs - 1})"
         )
         print(f"Classes: {', '.join(self.classes)}")
         print("-" * 60)
