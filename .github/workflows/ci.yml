@@ -80,3 +80,29 @@ jobs:
         run: |
           docker stop fastapi-test
           docker rm fastapi-test
+  
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup deployment
+        run: echo "Start deploying application to Hugging Face Spaces..."
+      
+      - name: Get Bot identity details
+        id: bot
+        uses: raven-actions/bot-details@v1
+
+      - name: Configure Git for Hugging Face
+        run: |
+          git config --global user.name "${{ steps.bot.outputs.name }}"
+          git config --global user.email "${{ steps.bot.outputs.email }}"
+      
+      - name: Deploy to Hugging Face Spaces
+        run: |
+          git remote add space https://${{ secrets.HF_USERNAME }}:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/${{ secrets.HF_USERNAME }}/${{ secrets.HF_SPACE_NAME }}
+          git push --force space main
