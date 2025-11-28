@@ -22,3 +22,6 @@ tokenizers==0.22.1
 # Utilities
 python-dotenv==1.2.1
 requests==2.32.4
+gradio==6.0.1
+urllib3==2.5.0
+requests===2.32.4
