@@ -101,11 +101,11 @@ jobs:
       
       - name: Deploy to Hugging Face Spaces
         run: |
-          # Remove learning files not needed in the Space
-          rm -rf week_* .github/ iris/ titanic/ .huggingface/
-
           # Copy the Space-specific README to overwrite the GitHub one
           cp .huggingface/README.md .
+
+          # Remove learning files not needed in the Space
+          rm -rf week_* .github/ iris/ titanic/ .huggingface/
           
           # Configure git
           git config --global user.name "${{ steps.bot.outputs.name }}"
