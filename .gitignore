@@ -1,0 +1,7 @@
+# Development files to ignore in GitHub repo
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv
