@@ -4,6 +4,8 @@ FROM python:3.11-slim
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1
+ARG HF_TOKEN=""
+ENV HF_TOKEN=$HF_TOKEN
 
 # Set the working directory in the container
 WORKDIR /app
