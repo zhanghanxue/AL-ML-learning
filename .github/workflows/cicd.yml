@@ -111,6 +111,7 @@ jobs:
           mkdir -p .deployment
           cp -r app .deployment/
           cp requirements.txt .deployment/
+          cp Dockerfile .deployment/
           cp .huggingface/README.md .deployment/README.md
 
           # Switch to deployment directory
