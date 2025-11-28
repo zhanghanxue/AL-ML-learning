@@ -89,6 +89,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for deployment
 
       - name: Setup deployment
         run: echo "Start deploying application to Hugging Face Spaces..."
