@@ -15,12 +15,12 @@ A high-level overview of my hands-on learning path. Each phase builds towards a 
 ### **Phase 1: Foundations & Data Mastery**
 - **Focus:** Mastering the data science stack (Pandas, NumPy, Seaborn) and core ML concepts through practical application.
 - **Key Outcomes:** Proficiency in data cleaning, exploratory analysis, and building classical ML models.
-- **Project:** [`Exploratory Data Analysis`](/week%203%20data%20visualization/) | [`API Data Ingestion`](/week%202%20data%20manipulation/)
+- **Project:** [`Exploratory Data Analysis`](/week_3_data_visualization/) | [`API Data Ingestion`](/week_2_data_manipulation/)
 
 ### **Phase 2: Deep Learning & NLP**
 - **Focus:** Building and training neural networks with PyTorch and fine-tuning transformer models with Hugging Face.
 - **Key Outcomes:** Ability to implement and fine-tune deep learning models for computer vision and NLP tasks.
-- **Project:** [`Image Classifier`]() | [`NLP Text Classifier`]()
+- **Project:** [`Image Classifier`](/week_5_fastai/) | [`NLP Text Classifier`](/week_7_NLP/)
 
 ### **Phase 3: MLOps & System Integration**
 - **Focus:** Transitioning from models to production systems. Building APIs with FastAPI, containerization with Docker, and implementing CI/CD.
@@ -34,10 +34,10 @@ This end-to-end system is the central artifact of my learning journey, designed 
 | Component | Description | Tech Stack | Status |
 | :--- | :--- | :--- | :--- |
 | **1. Classification Model** | A fine-tuned Transformer model for classifying ticket urgency and category. | `PyTorch`, `Hugging Face Transformers` | `Complete` |
-| **2. Prediction API** | A containerized FastAPI service that provides model predictions. | `FastAPI`, `Docker` | `In Progress` |
-| **3. Agentic Workflow** | An intelligent agent that decides on actions based on model output. | `LangChain` | `Planned` |
-| **4. CI/CD Pipeline** | Automated testing and deployment of the entire system. | `GitHub Actions` | `Planned` |
-| **5. Live Demo** | The full system deployed and accessible. | `Hugging Face Spaces` | `Planned` |
+| **2. Prediction API** | A containerized FastAPI service that provides model predictions. | `FastAPI`, `Docker` | `Complete` |
+| **3. CI/CD Pipeline** | Automated testing and deployment of the entire system. | `GitHub Actions` | `Complete` |
+| **4. Live Demo** | The full system deployed and accessible. | `Hugging Face Spaces` | `Complete` |
+| **5. Agentic Workflow** | An intelligent agent that decides on actions based on model output. | `LangChain` | `In Progress` |
 
 ## 🛠️ Tech Stack
 
@@ -118,7 +118,7 @@ A living log of my weekly progress and key learnings.
 
 ## 🔗 Links
 
-- **Live Demos:** [Hugging Face Spaces]()
+- **Live Demos:** [Hugging Face Spaces](https://huggingface.co/spaces/zhanghanxue/support-ticket-triage-agent)
 - **LinkedIn:** [Profile]()
 
 ---
