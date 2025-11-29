@@ -104,8 +104,8 @@ A living log of my weekly progress and key learnings.
 - [x] Configured automated testing workflow
 
 ## Week 11 (Nov 17-23): Deployment
-- [ ] Deployed to Hugging Face Spaces
-- [ ] Verified health endpoints and functionality
+- [x] Deployed to Hugging Face Spaces
+- [x] Verified health endpoints and functionality
 
 ## Week 12 (Nov 24-30): Agent Integration
 - [ ] Built LangChain agent with business logic

@@ -5,14 +5,18 @@ import os
 
 # Get the base URL for the API
 def get_base_url():
-    """Get the correct base URL for API calls"""
-    # In Hugging Face Space, use relative URL since it's the same container
-    if os.getenv("SPACE_ID") or os.getenv(
-        "HF_SPACE_ID"
-    ):  # Hugging Face sets this environment variable
-        return ""  # Relative URL works in same container
-    else:
-        return "http://localhost:8000"  # For local development
+    """
+    Get the correct base URL for API calls.
+    Uses the Space's own public URL when running on Hugging Face.
+    """
+    # Check if we're running in a Hugging Face Space
+    space_id = os.getenv('SPACE_ID')
+    if space_id:
+        # Build the public URL for the Space
+        # Format: https://{author}-{space_name}.hf.space
+        author, space_name = space_id.split('/')
+        return f"https://{author}-{space_name}.hf.space"
+    return "http://localhost:8000"  # For local development
 
 
 def classify_ticket(ticket_text):
