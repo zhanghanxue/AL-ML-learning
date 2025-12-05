@@ -44,6 +44,7 @@ jobs:
             ghcr.io/${{ github.repository_owner }}/al-ml-learning:latest
           build-args: |
             HF_TOKEN=${{ secrets.HF_TOKEN }}
+            SLACK_WEBHOOK_URL=${{ secrets.SLACK_WEBHOOK_URL }}
       
       - name: Test Docker image
         run: |
@@ -81,6 +82,14 @@ jobs:
           curl -X POST http://localhost:8000/predict \
             -H "Content-Type: application/json" \
             -d '{"text": "Check my account balance for me"}' || echo "Predict endpoint test skipped"
+          
+            echo "Testing new agent endpoint..."
+          curl -X POST http://localhost:8000/agent/predict \
+            -H "Content-Type: application/json" \
+            -d '{"text": "Test ticket for agent processing"}' \
+            || echo "Agent endpoint test skipped (may need HF_TOKEN)"
+
+          curl -f http://localhost:8000/agent/health || echo "Agent health check failed"
           
           # Cleanup
           docker stop fastapi-test

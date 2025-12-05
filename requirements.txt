@@ -25,3 +25,8 @@ requests==2.32.4
 gradio==6.0.1
 urllib3==2.5.0
 requests===2.32.4
+
+# For agentic capabilities
+langchain==1.1.0
+openai==2.8.1
+slack-sdk==3.39.0
