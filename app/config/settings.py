@@ -1,14 +1,16 @@
 import os
 from typing import List, Optional
 
+
 class Settings:
-    
     HF_TOKEN: str = os.getenv("HF_TOKEN", "")
     HF_MODEL: str = os.getenv("HF_MODEL", "mistralai/Mistral-7B-Instruct-v0.1")
 
     SLACK_WEBHOOK_URL: str = os.getenv("SLACK_WEBHOOK_URL", "")
 
-    LOCAL_API_URL: str = os.getenv("LOCAL_API_URL", "http://localhost:8000")
+    REMOTE_API_URL: str = os.getenv(
+        "REMOTE_API_URL", "https://zhanghanxue-support-ticket-triage-agent.hf.space/"
+    )
 
     MAX_REASONING_STEPS: int = int(os.getenv("MAX_REASONING_STEPS", "3"))
 
@@ -16,12 +18,12 @@ class Settings:
 
     LLM_TEMPERATURE: float = float(os.getenv("LLM_TEMPERATURE", "0.7"))
 
-    URGENT_INTENTS = [
+    URGENT_INTENTS: List[str] = [
         "lost_or_stolen_card",
         "fraudulent_transaction",
         "account_hacked",
         "urgent_help",
-        "card_not_working"
+        "card_not_working",
     ]
 
     FREE_TIER_LIMIT_USD: float = 0.10  # $0.10 per month
@@ -33,5 +35,6 @@ class Settings:
             print("⚠️ HF_TOKEN not set. LLM features disabled.")
             return False
         return True
+
 
 settings = Settings()

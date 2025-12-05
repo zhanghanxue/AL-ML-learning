@@ -3,12 +3,14 @@ import requests
 import os
 from typing import Dict, Any
 
+
 def get_base_url():
-    space_id = os.getenv('SPACE_ID')
+    space_id = os.getenv("SPACE_ID")
     if space_id:
-        author, space_name = space_id.split('/')
+        author, space_name = space_id.split("/")
         return f"https://{author}-{space_name}.hf.space"
     return "http://localhost:8000"
+
 
 def process_with_agent(ticket_text: str) -> Dict[str, Any]:
     try:
@@ -17,12 +19,12 @@ def process_with_agent(ticket_text: str) -> Dict[str, Any]:
             f"{base_url}/agent/predict",
             json={"text": ticket_text},
             timeout=45,
-            verify=False  # For local testing
+            verify=False,  # For local testing
         )
-        
+
         if response.status_code == 200:
             result = response.json()
-            
+
             outputs = {
                 "response": result.get("response", "No response"),
                 "intent": result.get("intent", "unknown"),
@@ -30,11 +32,11 @@ def process_with_agent(ticket_text: str) -> Dict[str, Any]:
                 "priority": "🔴 URGENT" if result.get("is_urgent") else "🟢 Normal",
                 "escalated": "✅ Yes" if result.get("escalated") else "❌ No",
                 "processing_time": f"{result.get('processing_time', 0):.2f}s",
-                "cost": f"${result.get('llm_cost', 0):.6f}"
+                "cost": f"${result.get('llm_cost', 0):.6f}",
             }
-            
+
             return outputs, result
-            
+
         else:
             return {
                 "response": f"Error: API returned {response.status_code}",
@@ -43,9 +45,9 @@ def process_with_agent(ticket_text: str) -> Dict[str, Any]:
                 "priority": "Unknown",
                 "escalated": "No",
                 "processing_time": "0s",
-                "cost": "$0"
+                "cost": "$0",
             }, {"error": f"HTTP {response.status_code}"}
-            
+
     except Exception as e:
         return {
             "response": f"Connection error: {str(e)}",
@@ -54,14 +56,16 @@ def process_with_agent(ticket_text: str) -> Dict[str, Any]:
             "priority": "Unknown",
             "escalated": "No",
             "processing_time": "0s",
-            "cost": "$0"
+            "cost": "$0",
         }, {"error": str(e)}
+
 
 def create_agent_interface():
     """Create a dedicated interface for the agent"""
     with gr.Blocks(title="🤖 Intelligent Support Agent", theme=gr.themes.Soft()) as demo:
         gr.Markdown("# 🤖 Intelligent Support Ticket Agent")
-        gr.Markdown("""
+        gr.Markdown(
+            """
         **Week 12 Feature**: AI Agent with Reasoning
         
         This agent doesn't just classify - it:
@@ -71,59 +75,66 @@ def create_agent_interface():
         - 💰 **Tracks** costs
         
         Compare with the simple classifier on the other tab!
-        """)
-        
+        """
+        )
+
         with gr.Row():
             with gr.Column(scale=2):
                 ticket_input = gr.Textbox(
                     label="Support Ticket",
                     placeholder="Describe your issue...",
-                    lines=5
+                    lines=5,
                 )
-                
+
                 with gr.Row():
                     submit_btn = gr.Button("🧠 Process with Agent", variant="primary")
                     clear_btn = gr.Button("Clear")
-            
+
             with gr.Column(scale=1):
                 # Output fields
                 response_output = gr.Textbox(label="Agent Response", interactive=False)
                 intent_output = gr.Textbox(label="Predicted Intent", interactive=False)
                 confidence_output = gr.Textbox(label="Confidence", interactive=False)
                 priority_output = gr.Textbox(label="Priority", interactive=False)
-                escalated_output = gr.Textbox(label="Escalated to Slack", interactive=False)
+                escalated_output = gr.Textbox(
+                    label="Escalated to Slack", interactive=False
+                )
                 time_output = gr.Textbox(label="Processing Time", interactive=False)
                 cost_output = gr.Textbox(label="LLM API Cost", interactive=False)
-        
+
         # Example tickets that show off the agent
         examples = [
             "My credit card was stolen and someone made unauthorized purchases!",
             "I need to check my account balance for last month.",
             "My card is not working at any ATM or store.",
             "I suspect my account has been hacked - strange transactions!",
-            "URGENT: I lost my debit card at the airport!"
+            "URGENT: I lost my debit card at the airport!",
         ]
-        
-        gr.Examples(
-            examples=examples,
-            inputs=ticket_input,
-            label="Try these examples:"
-        )
-        
+
+        gr.Examples(examples=examples, inputs=ticket_input, label="Try these examples:")
+
         # Connect button
         submit_btn.click(
             fn=process_with_agent,
             inputs=ticket_input,
             outputs=[
-                gr.Dict(value_keys=[
-                    "response", "intent", "confidence", "priority", 
-                    "escalated", "processing_time", "cost"
-                ]),
-                gr.JSON(label="Raw Response")
-            ]
+                gr.Dict(
+                    value_keys=[
+                        "response",
+                        "intent",
+                        "confidence",
+                        "priority",
+                        "escalated",
+                        "processing_time",
+                        "cost",
+                    ]
+                ),
+                gr.JSON(label="Raw Response"),
+            ],
         )
-    
+
     return demo
+
 
 if __name__ == "__main__":
     demo = create_agent_interface()

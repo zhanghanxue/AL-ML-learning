@@ -10,11 +10,11 @@ def get_base_url():
     Uses the Space's own public URL when running on Hugging Face.
     """
     # Check if we're running in a Hugging Face Space
-    space_id = os.getenv('SPACE_ID')
+    space_id = os.getenv("SPACE_ID")
     if space_id:
         # Build the public URL for the Space
         # Format: https://{author}-{space_name}.hf.space
-        author, space_name = space_id.split('/')
+        author, space_name = space_id.split("/")
         return f"https://{author}-{space_name}.hf.space"
     return "http://localhost:8000"  # For local development
 
@@ -59,7 +59,7 @@ def create_interface():
                     label="Support Ticket Text",
                     placeholder="Enter the support ticket description here...",
                     lines=4,
-                    max_length=10,
+                    max_length=1000,
                 )
                 classify_button = gr.Button("Classify Ticket", variant="primary")
 

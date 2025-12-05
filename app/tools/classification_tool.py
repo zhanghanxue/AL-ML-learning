@@ -1,38 +1,49 @@
 import requests
 import json
 import logging
+import os
 from typing import Dict, Any, List
 from app.config.settings import settings
 
 logger = logging.getLogger(__name__)
 
-class ClassificationTool:
-    
-    def __init__(self):
-        self.api_url = f"{settings.LOCAL_API_URL}/predict"
-    
-    def classify(self, text: str) -> Dict[str, Any]:
 
+class ClassificationTool:
+    def __init__(self):
+        self.is_hf_space = os.getenv("SPACE_ID") is not None
+
+        if self.is_hf_space:
+            # On Hugging Face: Call local endpoint (same container)
+            self.base_url = "http://localhost:7860"  # HF Spaces default
+            logger.info("Running on Hugging Face Space - using local endpoint")
+        else:
+            # Local development: Use the remote URL you tested
+            self.base_url = "https://zhanghanxue-support-ticket-triage-agent.hf.space"
+            logger.info("Running locally - using remote endpoint")
+
+    def classify(self, text: str) -> Dict[str, Any]:
         try:
             response = requests.post(
-                self.api_url,
+                f"{self.base_url}/predict",
                 json={"text": text},
-                headers={'Content-Type': 'application/json'},
-                timeout=30
+                headers={"Content-Type": "application/json"},
+                timeout=30,
             )
-            
+
             if response.status_code == 200:
                 result = response.json()
-                
+
                 intent = result.get("prediction", "unknown")
                 confidence = result.get("confidence", 0.0)
-                
+
                 is_urgent = intent in settings.URGENT_INTENTS and confidence > 0.7
-                
+
                 suggested_action = self.get_suggested_action(intent, confidence)
-                
-                logger.info(f"✅ Classification: {intent} ({confidence:.1%}) - Urgent: {is_urgent}")
-                
+
+                logger.info(
+                    f"✅ Classification: {intent} ({confidence:.1%}) - Urgent: {is_urgent}"
+                )
+
                 return {
                     "success": True,
                     "intent": intent,
@@ -40,9 +51,9 @@ class ClassificationTool:
                     "is_urgent": is_urgent,
                     "suggested_action": suggested_action,
                     "full_response": result,
-                    "source": "zhanghanxue/banking77-weighted-classifier"
+                    "source": "zhanghanxue/banking77-weighted-classifier",
                 }
-                
+
             else:
                 logger.error(f"Classification API error: {response.status_code}")
                 return {
@@ -51,9 +62,9 @@ class ClassificationTool:
                     "confidence": 0.0,
                     "is_urgent": False,
                     "error": f"API returned {response.status_code}",
-                    "source": "error"
+                    "source": "error",
                 }
-                
+
         except requests.exceptions.ConnectionError:
             logger.error("Cannot connect to classification API")
             return {
@@ -62,7 +73,7 @@ class ClassificationTool:
                 "confidence": 0.0,
                 "is_urgent": False,
                 "error": "Classification API not available",
-                "source": "error"
+                "source": "error",
             }
         except Exception as e:
             logger.error(f"Classification failed: {e}")
@@ -72,9 +83,9 @@ class ClassificationTool:
                 "confidence": 0.0,
                 "is_urgent": False,
                 "error": str(e),
-                "source": "error"
+                "source": "error",
             }
-    
+
     def get_suggested_action(self, intent: str, confidence: float) -> str:
         action_map = {
             "lost_or_stolen_card": "BLOCK_CARD_AND_NOTIFY_CUSTOMER",
@@ -84,12 +95,14 @@ class ClassificationTool:
             "transaction_history": "PROVIDE_STATEMENT_AND_DETAILS",
             "balance_inquiry": "SHOW_CURRENT_BALANCE",
             "general_inquiry": "ROUTE_TO_SUPPORT_AGENT",
-            "loan_inquiry": "PROVIDE_LOAN_OPTIONS"
+            "loan_inquiry": "PROVIDE_LOAN_OPTIONS",
         }
-        
+
         return action_map.get(intent, "ESCALATE_TO_HUMAN_AGENT")
 
+
 classification_tool = ClassificationTool()
+
 
 def classify_ticket(text: str) -> Dict[str, Any]:
     """Simple wrapper"""

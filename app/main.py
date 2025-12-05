@@ -19,13 +19,17 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 app = FastAPI(title="Support Ticket Triage Agent")
 
+
 class AgentRequest(BaseModel):
     """Request format for agent endpoint"""
+
     text: str
     user_id: Optional[str] = "anonymous"
 
+
 class AgentResponse(BaseModel):
     """Response format for agent endpoint"""
+
     status: str
     response: str
     intent: Optional[str] = None
@@ -34,6 +38,7 @@ class AgentResponse(BaseModel):
     escalated: Optional[bool] = None
     processing_time: float
     llm_cost: float
+
 
 @app.get("/")
 def read_root():
@@ -90,6 +95,7 @@ def debug_test():
             "traceback": traceback.format_exc(),
         }
 
+
 @app.get("/agent/health")
 async def agent_health():
     return {
@@ -97,55 +103,61 @@ async def agent_health():
         "llm": {
             "configured": bool(settings.HF_TOKEN),
             "model": settings.HF_MODEL,
-            "cost_tracking": "enabled"
+            "cost_tracking": "enabled",
         },
         "slack": {
             "configured": bool(settings.SLACK_WEBHOOK_URL),
-            "mode": "real" if slack_tool.enabled else "mock"
+            "mode": "real" if slack_tool.enabled else "mock",
         },
         "classification": {
             "source": "zhanghanxue/banking77-weighted-classifier",
-            "url": settings.LOCAL_API_URL
+            "url": settings.REMOTE_API_URL,
         },
-        "cost_metrics": llm_service.get_cost_metrics()
+        "cost_metrics": llm_service.get_cost_metrics(),
     }
+
 
 @app.post("/agent/predict", response_model=AgentResponse)
 async def agent_predict(request: AgentRequest):
     if not request.text.strip():
         raise HTTPException(status_code=400, detail="Ticket text cannot be empty")
-    
+
     if len(request.text.strip()) < 10:
-        raise HTTPException(status_code=400, detail="Ticket text too short (min 10 chars)")
-    
+        raise HTTPException(
+            status_code=400, detail="Ticket text too short (min 10 chars)"
+        )
+
     try:
         logger.info(f"🧠 Agent processing ticket from user {request.user_id}")
-        
+
         # Call the agent
         result = react_agent.process(request.text)
-        
+
         # Ensure all fields are present
         if "cost" in result:
             result["llm_cost"] = result.pop("cost")
-        
+
         # Set defaults for any missing fields
         defaults = {
             "intent": "unknown",
             "confidence": 0.0,
             "is_urgent": False,
             "escalated": False,
-            "llm_cost": 0.0
+            "llm_cost": 0.0,
         }
-        
+
         for key, value in defaults.items():
             if key not in result:
                 result[key] = value
-        
+
         return AgentResponse(**result)
-        
+
     except Exception as e:
         logger.error(f"Agent processing failed: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"Agent processing failed: {str(e)}")
+        raise HTTPException(
+            status_code=500, detail=f"Agent processing failed: {str(e)}"
+        )
+
 
 @app.get("/agent/metrics")
 async def agent_metrics():
@@ -154,44 +166,40 @@ async def agent_metrics():
         "configuration": {
             "max_reasoning_steps": settings.MAX_REASONING_STEPS,
             "urgent_intents": settings.URGENT_INTENTS,
-            "free_tier_limit": f"${settings.FREE_TIER_LIMIT_USD}"
+            "free_tier_limit": f"${settings.FREE_TIER_LIMIT_USD}",
         },
         "performance": {
             "slack_enabled": slack_tool.enabled,
-            "llm_available": bool(settings.HF_TOKEN)
-        }
+            "llm_available": bool(settings.HF_TOKEN),
+        },
     }
+
 
 @app.get("/agent/debug")
 async def agent_debug():
     test_ticket = "My credit card was stolen and someone made unauthorized purchases!"
-    
+
     # Test each component
     classification = classification_tool.classify(test_ticket)
-    
+
     llm_test = llm_service.generate("Test: What is 2+2?")
-    
+
     slack_test = slack_tool.send_alert(
-        test_ticket, 
-        "fraudulent_transaction", 
-        0.95, 
-        "critical"
+        test_ticket, "fraudulent_transaction", 0.95, "critical"
     )
-    
+
     full_agent_test = react_agent.process(test_ticket)
-    
+
     return {
         "components": {
             "classification": classification,
-            "llm": {
-                "success": llm_test["success"],
-                "cost": llm_test.get("cost", 0)
-            },
-            "slack": slack_test
+            "llm": {"success": llm_test["success"], "cost": llm_test.get("cost", 0)},
+            "slack": slack_test,
         },
         "full_agent_test": full_agent_test,
-        "status": "all_components_working"
+        "status": "all_components_working",
     }
+
 
 gradio_app = create_interface()
 app = gr.mount_gradio_app(app, gradio_app, path="/gradio")
