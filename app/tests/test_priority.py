@@ -1,10 +1,4 @@
 # test_fixed_priority.py
-import sys
-
-sys.path.append(".")
-
-# Import your tools
-from app.tools.classification_tool import classification_tool
 from app.tools.slack_tool import slack_tool
 
 test_cases = [

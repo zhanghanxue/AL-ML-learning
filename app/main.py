@@ -9,7 +9,7 @@ from typing import Optional
 from app.models import PredictionRequest, PredictionResponse
 from app.prediction import predict_intent
 from app.gradio_interface import create_interface
-from app.agent.react_agent import react_agent, process_ticket_agent
+from app.agent.react_agent import react_agent
 from app.agent.llm_service import llm_service
 from app.tools.slack_tool import slack_tool
 from app.tools.classification_tool import classification_tool

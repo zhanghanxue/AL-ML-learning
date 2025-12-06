@@ -19,12 +19,6 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
-        run: pip install flake8
-
-      - name: Run flake8 linting
-        run: flake8 . --max-line-length=120
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 

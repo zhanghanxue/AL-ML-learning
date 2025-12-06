@@ -88,19 +88,20 @@ def create_agent_interface():
 
                 with gr.Row():
                     submit_btn = gr.Button("🧠 Process with Agent", variant="primary")
-                    clear_btn = gr.Button("Clear")
 
             with gr.Column(scale=1):
                 # Output fields
-                response_output = gr.Textbox(label="Agent Response", interactive=False)
-                intent_output = gr.Textbox(label="Predicted Intent", interactive=False)
-                confidence_output = gr.Textbox(label="Confidence", interactive=False)
-                priority_output = gr.Textbox(label="Priority", interactive=False)
-                escalated_output = gr.Textbox(
-                    label="Escalated to Slack", interactive=False
+                gr.Textbox(label="Agent Response", interactive=False, key="response")
+                gr.Textbox(label="Predicted Intent", interactive=False, key="intent")
+                gr.Textbox(label="Confidence", interactive=False, key="confidence")
+                gr.Textbox(label="Priority", interactive=False, key="priority")
+                gr.Textbox(
+                    label="Escalated to Slack", interactive=False, key="escalated"
                 )
-                time_output = gr.Textbox(label="Processing Time", interactive=False)
-                cost_output = gr.Textbox(label="LLM API Cost", interactive=False)
+                gr.Textbox(
+                    label="Processing Time", interactive=False, key="processing_time"
+                )
+                gr.Textbox(label="LLM API Cost", interactive=False, key="cost")
 
         # Example tickets that show off the agent
         examples = [

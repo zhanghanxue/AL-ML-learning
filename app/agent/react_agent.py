@@ -24,7 +24,7 @@ class ReActAgent:
         return """You are a Support Ticket Triage Agent. Follow this process:
 
 1. CLASSIFY the ticket to understand customer intent
-2. DECIDE if immediate action is needed  
+2. DECIDE if immediate action is needed
 3. RESPOND appropriately to the customer
 4. ESCALATE urgent tickets to human team
 
@@ -34,7 +34,7 @@ Available tools:
 
 Urgent intents that require escalation:
 - card_lost_or_stolen
-- fraudulent_transaction  
+- fraudulent_transaction
 - account_hacked
 - urgent_help
 - card_not_working (if high confidence)
@@ -128,7 +128,8 @@ What should I do?"""
                     ticket_text, intent, confidence, priority
                 )
 
-                response = f"I've identified this as urgent ({intent}). The team has been alerted and will contact you shortly."
+                response = f"I've identified this as urgent ({intent}). "
+                response += "The team has been alerted and will contact you shortly."
                 escalated = slack_result["success"]
 
             elif action == "classify":
@@ -142,7 +143,8 @@ What should I do?"""
             else:  # Default: respond
                 response = (
                     action_input
-                    or f"Thank you for reporting this {intent} issue. Our system is processing your request."
+                    or f"Thank you for reporting this {intent} issue. "
+                    f"Our system is processing your request."
                 )
                 escalated = False
 

@@ -1,7 +1,4 @@
 # test_everything.py
-import sys
-
-sys.path.append(".")
 from app.tools.classification_tool import classification_tool
 from app.tools.slack_tool import send_slack_alert_from_ticket
 

@@ -1,6 +1,5 @@
 import requests
 import time
-import json
 import logging
 from typing import Optional, Dict, Any
 from app.config.settings import settings
@@ -86,7 +85,8 @@ class LLMService:
             self.total_cost += cost
 
             logger.info(
-                f"LLM request #{self.request_count} completed in {response_time_ms}ms, cost: ${cost:.6f}, total cost: ${self.total_cost:.4f}"
+                f"LLM request #{self.request_count} completed in {response_time_ms}ms, "
+                f"cost: ${cost:.6f}, total cost: ${self.total_cost:.4f}"
             )
 
             return {

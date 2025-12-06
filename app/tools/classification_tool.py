@@ -1,8 +1,7 @@
 import requests
-import json
 import logging
 import os
-from typing import Dict, Any, List
+from typing import Dict, Any
 from app.config.settings import settings
 
 logger = logging.getLogger(__name__)
