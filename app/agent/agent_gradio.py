@@ -25,28 +25,37 @@ def process_with_agent(ticket_text: str) -> Dict[str, Any]:
         if response.status_code == 200:
             result = response.json()
 
-            outputs = {
-                "response": result.get("response", "No response"),
-                "intent": result.get("intent", "unknown"),
-                "confidence": f"{result.get('confidence', 0):.1%}",
-                "priority": "🔴 URGENT" if result.get("is_urgent") else "🟢 Normal",
-                "escalated": "✅ Yes" if result.get("escalated") else "❌ No",
-                "processing_time": f"{result.get('processing_time', 0):.2f}s",
-                "cost": f"${result.get('llm_cost', 0):.6f}",
-            }
-
-            return outputs, result
-
+            response_text = result.get("response", "No response")
+            intent = result.get("intent", "unknown")
+            confidence_val = f"{result.get('confidence', 0):.1%}"
+            priority_val = "🔴 URGENT" if result.get("is_urgent") else "🟢 Normal"
+            escalated_val = "✅ Yes" if result.get("escalated") else "❌ No"
+            processing_time_val = f"{result.get('processing_time', 0):.2f}s"
+            cost_val = f"${result.get('llm_cost', 0):.6f}"
+            
+            # Return as tuple of individual values + raw result
+            return (
+                response_text,
+                intent,
+                confidence_val,
+                priority_val,
+                escalated_val,
+                processing_time_val,
+                cost_val,
+                result,  # Raw response for JSON component
+            )
         else:
-            return {
-                "response": f"Error: API returned {response.status_code}",
-                "intent": "error",
-                "confidence": "0%",
-                "priority": "Unknown",
-                "escalated": "No",
-                "processing_time": "0s",
-                "cost": "$0",
-            }, {"error": f"HTTP {response.status_code}"}
+            # Return error values
+            return (
+                f"Error: API returned {response.status_code}",
+                "error",
+                "0%",
+                "Unknown",
+                "No",
+                "0s",
+                "$0",
+                {"error": f"HTTP {response.status_code}"},
+            )
 
     except Exception as e:
         return {
@@ -62,7 +71,7 @@ def process_with_agent(ticket_text: str) -> Dict[str, Any]:
 
 def create_agent_interface():
     """Create a dedicated interface for the agent"""
-    with gr.Blocks(title="🤖 Intelligent Support Agent", theme=gr.themes.Soft()) as demo:
+    with gr.Blocks(title="🤖 Intelligent Support Agent") as demo:
         gr.Markdown("# 🤖 Intelligent Support Ticket Agent")
         gr.Markdown(
             """
@@ -91,17 +100,13 @@ def create_agent_interface():
 
             with gr.Column(scale=1):
                 # Output fields
-                gr.Textbox(label="Agent Response", interactive=False, key="response")
-                gr.Textbox(label="Predicted Intent", interactive=False, key="intent")
-                gr.Textbox(label="Confidence", interactive=False, key="confidence")
-                gr.Textbox(label="Priority", interactive=False, key="priority")
-                gr.Textbox(
-                    label="Escalated to Slack", interactive=False, key="escalated"
-                )
-                gr.Textbox(
-                    label="Processing Time", interactive=False, key="processing_time"
-                )
-                gr.Textbox(label="LLM API Cost", interactive=False, key="cost")
+                agent_response = gr.Textbox(label="Agent Response", interactive=False)
+                predicted_intent = gr.Textbox(label="Predicted Intent", interactive=False)
+                confidence = gr.Textbox(label="Confidence", interactive=False)
+                priority = gr.Textbox(label="Priority", interactive=False)
+                escalated = gr.Textbox(label="Escalated to Slack", interactive=False)
+                processing_time = gr.Textbox(label="Processing Time", interactive=False)
+                cost = gr.Textbox(label="LLM API Cost", interactive=False)
 
         # Example tickets that show off the agent
         examples = [
@@ -119,18 +124,14 @@ def create_agent_interface():
             fn=process_with_agent,
             inputs=ticket_input,
             outputs=[
-                gr.Dict(
-                    value_keys=[
-                        "response",
-                        "intent",
-                        "confidence",
-                        "priority",
-                        "escalated",
-                        "processing_time",
-                        "cost",
-                    ]
-                ),
-                gr.JSON(label="Raw Response"),
+                agent_response,
+                predicted_intent,
+                confidence,
+                priority,
+                escalated,
+                processing_time,
+                cost,
+                gr.JSON(label="Raw Response"),  # Keep JSON for raw data if available
             ],
         )
 

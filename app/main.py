@@ -203,6 +203,6 @@ async def agent_debug():
 
 
 gradio_app = create_interface()
-agent_gradio_app = create_agent_interface()
 app = gr.mount_gradio_app(app, gradio_app, path="/gradio")
-app = gr.mount_gradio_app(app, agent_gradio_app, path="/agent/gradio")
+agent_gradio_app = create_agent_interface()
+app = gr.mount_gradio_app(app, agent_gradio_app, path="/agent/gradio", app_kwargs={"theme": "soft"})
