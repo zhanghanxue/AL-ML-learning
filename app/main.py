@@ -9,6 +9,7 @@ from typing import Optional
 from app.models import PredictionRequest, PredictionResponse
 from app.prediction import predict_intent
 from app.gradio_interface import create_interface
+from app.agent.agent_gradio import create_agent_interface
 from app.agent.react_agent import react_agent
 from app.agent.llm_service import llm_service
 from app.tools.slack_tool import slack_tool
@@ -202,4 +203,6 @@ async def agent_debug():
 
 
 gradio_app = create_interface()
+agent_gradio_app = create_agent_interface()
 app = gr.mount_gradio_app(app, gradio_app, path="/gradio")
+app = gr.mount_gradio_app(app, agent_gradio_app, path="/agent/gradio")

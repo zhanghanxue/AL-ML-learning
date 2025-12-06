@@ -114,6 +114,8 @@ jobs:
           # Create deployment package
           mkdir -p .deployment
           cp -r app .deployment/
+          rm -rf .deployment/app/tests
+          find .deployment/app -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
           cp requirements.txt .deployment/
           cp Dockerfile .deployment/
           cp .huggingface/README.md .deployment/README.md
